@@ -1,5 +1,3 @@
-
-
 ESX = nil
 Citizen.CreateThread(function()
 	while true do
@@ -93,7 +91,14 @@ function DisplayHelpText(str)
 	AddTextComponentString(str)
 	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
-
+Citizen.CreateThread(function()
+while true do
+	Wait(600)
+		if pause and fishing then
+			pausetimer = pausetimer + 1
+		end
+end
+end)
 Citizen.CreateThread(function()
 	while true do
 		Wait(5)
@@ -123,9 +128,7 @@ Citizen.CreateThread(function()
 				input = 8
 			end
 			
-			if pause then
-				pausetimer = pausetimer + 1
-			end
+			
 			if IsControlJustReleased(0, Keys['X']) then
 				fishing = false
 				ESX.ShowNotification("~r~Stopped fishing")
@@ -147,7 +150,7 @@ Citizen.CreateThread(function()
 			
 			
 			
-			if pausetimer > 125 then
+			if pausetimer > 3 then
 				input = 99
 			end
 			
@@ -381,14 +384,3 @@ function OpenBoatsMenu(x, y , z)
 		end
 	)
 end
-
-
-
-
-
-
-
-
-
-
-
