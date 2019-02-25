@@ -88,7 +88,7 @@ AddEventHandler('fishing:catch', function(bait)
 			end
 		else
 			if rnd >= 75 then
-				if xPlayer.getInventoryItem('1kgfish').count > 100 or  xPlayer.getInventoryItem('fish').count > 100 then
+				if xPlayer.getInventoryItem('fish').count > 100 then
 					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 				else
 					weight = math.random(4,9)
@@ -97,7 +97,7 @@ AddEventHandler('fishing:catch', function(bait)
 				end
 				
 			else
-				if xPlayer.getInventoryItem('1kgfish').count > 100 or  xPlayer.getInventoryItem('fish').count > 100 then
+				if xPlayer.getInventoryItem('fish').count > 100 then
 					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 				else
 					weight = math.random(2,6)
@@ -110,7 +110,7 @@ AddEventHandler('fishing:catch', function(bait)
 		if bait == "fish" then
 			if rnd >= 75 then
 				TriggerClientEvent('fishing:setbait', _source, "none")
-				if xPlayer.getInventoryItem('1kgfish').count > 100 or  xPlayer.getInventoryItem('fish').count > 100 then
+				if xPlayer.getInventoryItem('fish').count > 100 then
 					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 				else
 					weight = math.random(4,11)
@@ -119,7 +119,7 @@ AddEventHandler('fishing:catch', function(bait)
 				end
 				
 			else
-				if xPlayer.getInventoryItem('1kgfish').count > 100 or  xPlayer.getInventoryItem('fish').count > 100 then
+				if xPlayer.getInventoryItem('fish').count > 100 then
 					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 				else
 					weight = math.random(1,6)
@@ -132,7 +132,7 @@ AddEventHandler('fishing:catch', function(bait)
 			
 			if rnd >= 70 then
 			TriggerClientEvent('fishing:message', _source, "~y~You are currently fishing without any equipped bait")
-				if xPlayer.getInventoryItem('1kgfish').count > 100 or  xPlayer.getInventoryItem('fish').count > 100 then
+				if  xPlayer.getInventoryItem('fish').count > 100 then
 						TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 					else
 						weight = math.random(2,4)
@@ -142,7 +142,7 @@ AddEventHandler('fishing:catch', function(bait)
 					
 				else
 				TriggerClientEvent('fishing:message', _source, "~y~You are currently fishing without any equipped bait")
-					if xPlayer.getInventoryItem('1kgfish').count > 100 or  xPlayer.getInventoryItem('fish').count > 100 then
+					if xPlayer.getInventoryItem('fish').count > 100 then
 						TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 					else
 						weight = math.random(1,2)
@@ -170,7 +170,7 @@ AddEventHandler('fishing:catch', function(bait)
 							end
 						end	
 							else
-									if xPlayer.getInventoryItem('1kgfish').count > 100 or  xPlayer.getInventoryItem('fish').count > 100 then
+									if xPlayer.getInventoryItem('fish').count > 100 then
 										TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 									else
 										weight = math.random(4,8)
