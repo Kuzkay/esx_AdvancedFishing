@@ -137,7 +137,7 @@ Citizen.CreateThread(function()
 			
 				playerPed = GetPlayerPed(-1)
 				local pos = GetEntityCoords(GetPlayerPed(-1))
-				if pos.y >= 7700 or pos.y <= -4000 or pos.x <= -3700 or pos.x >= 4300 then
+				if pos.y >= 7700 or pos.y <= -4000 or pos.x <= -3700 or pos.x >= 4300 or if IsPedInAnyVehicle(GetPlayerPed(-1)) then
 					
 				else
 					fishing = false
