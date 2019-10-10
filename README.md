@@ -7,6 +7,6 @@ His work can be found here https://github.com/Kuzkay/esx_AdvancedFishing <br>
 Lot of thanks to him ❤
 
 ## Changes Made
-- [ ] Animation Issue 
+- [x] Animation Issue 
 - [ ] Boat Return
 - [ ] Redifine Logic of Bait
