@@ -103,6 +103,8 @@ Citizen.CreateThread(function()
 	while true do
 		Wait(5)
 		if fishing then
+			DisplayHelpText("Press X to stop fishing")
+
 			if IsControlJustReleased(0, Keys['1']) then
 				 input = 1
 			end
@@ -130,7 +132,8 @@ Citizen.CreateThread(function()
 			
 			
 			if IsControlJustReleased(0, Keys['X']) then
-				fishing = false
+				-- fishing = false
+				TriggerEvent('fishing:break')
 				ESX.ShowNotification("~r~Stopped fishing")
 			end
 			if fishing then
@@ -140,8 +143,9 @@ Citizen.CreateThread(function()
 				if pos.y >= 7700 or pos.y <= -4000 or pos.x <= -3700 or pos.x >= 4300 or IsPedInAnyVehicle(GetPlayerPed(-1)) then
 					
 				else
-					fishing = false
-					ESX.ShowNotification("~r~Stopped fishing")
+					-- fishing = false
+					TriggerEvent('fishing:break')
+					ESX.ShowNotification("~r~Stopped fishing - You are too close to the shore ")
 				end
 				if IsEntityDead(playerPed) or IsEntityInWater(playerPed) then
 					ESX.ShowNotification("~r~Stopped fishing")
