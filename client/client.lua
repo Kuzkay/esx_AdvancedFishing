@@ -103,8 +103,6 @@ Citizen.CreateThread(function()
 	while true do
 		Wait(5)
 		if fishing then
-			DisplayHelpText("Press X to stop fishing")
-
 			if IsControlJustReleased(0, Keys['1']) then
 				 input = 1
 			end
@@ -132,8 +130,7 @@ Citizen.CreateThread(function()
 			
 			
 			if IsControlJustReleased(0, Keys['X']) then
-				--fishing = false
-				TriggerEvent('fishing:break')
+				fishing = false
 				ESX.ShowNotification("~r~Stopped fishing")
 			end
 			if fishing then
