@@ -295,6 +295,7 @@ AddEventHandler('fishing:fishstart', function()
 			ESX.ShowNotification("~g~Fishing started")
 			TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_STAND_FISHING", 0, true)
 			fishing = true
+			ESX.ShowNotification("~r~Equip some bait to the fishing rod inorder to attract fishes")
 		else
 			ESX.ShowNotification("~y~You need to go further away from the shore")
 		end
@@ -314,7 +315,7 @@ Citizen.CreateThread(function()
 				DisplayHelpText('Press E to rent a boat')
 				if IsControlJustPressed(0, Keys['E']) and IsPedOnFoot(ped) then
 					if AlreadyRentedBoat==true then
-						ESX.ShowNotification("~r~You have already rented a boat")
+						ESX.ShowNotification("~r~You have already rented a boat.")
 					else 
 						OpenBoatsMenu(Config.MarkerZones[k].xs, Config.MarkerZones[k].ys, Config.MarkerZones[k].zs,k) -- passing k to find boat index
 					end 
