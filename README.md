@@ -12,6 +12,8 @@ Lot of thanks to him ❤
 - [x] Redifine Logic of Bait
 - [x] Add items to Database
 
+** Feel free to add any issue or pull request **
+
 ## Setup
 * Copy into resources (Name the folder as esx_AdvancedFishing)
 * Add the following line to your server.cfg
