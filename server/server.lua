@@ -1,8 +1,9 @@
-
 print("Advanced fishing started successfully")
 print("Advanced Fishing developed by Kuzaky | Discord: Kuzkay#9999")
 
 ESX = nil
+local TBaitGoneProb = 0	
+local SBaitGoneProb = 0	
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 
@@ -62,7 +63,6 @@ ESX.RegisterUsableItem('fishingrod', function(source)
 end)
 
 
-				
 RegisterNetEvent('fishing:catch')
 AddEventHandler('fishing:catch', function(bait)
 	
@@ -79,24 +79,47 @@ AddEventHandler('fishing:catch', function(bait)
 				xPlayer.removeInventoryItem('fishingrod', 1)
 			else
 				TriggerClientEvent('fishing:setbait', _source, "none")
-				if xPlayer.getInventoryItem('turtle').count > 4 then
+				if xPlayer.getInventoryItem('turtle').count > 2 then
 					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more turtles")
 				else
 					TriggerClientEvent('fishing:message', _source, "~g~You caught a turtle\n~r~These are endangered species and are illegal to posses")
 					xPlayer.addInventoryItem('turtle', 1)
 				end
+				TriggerClientEvent('fishing:message', _source, "~r~Bait is gone , Add a new one")
 			end
 		else
+			local BaitGoneProb = math.random(1,3)
+			TBaitGoneProb = TBaitGoneProb + BaitGoneProb
+			if TBaitGoneProb > 7 then 
+				TBaitGoneProb = 0
+				TriggerClientEvent('fishing:setbait', _source, "none")
+				TriggerClientEvent('fishing:message', _source, "~r~Bait is gone , Add a new one")
+			end
+			if xPlayer.getInventoryItem('fish').count > 100 then
+				TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
+			else
+				weight = math.random(2,6)
+			 	TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
+				xPlayer.addInventoryItem('fish', weight)
+			end
+		end
+
+
+	else
+		if bait == "fish" then
 			if rnd >= 75 then
+				TriggerClientEvent('fishing:setbait', _source, "none")
+				
 				if xPlayer.getInventoryItem('fish').count > 100 then
 					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 				else
-					weight = math.random(4,9)
+					weight = math.random(4,6)
 					TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
 					xPlayer.addInventoryItem('fish', weight)
 				end
-				
+				TriggerClientEvent('fishing:message', _source, "~r~Bait is gone , Add a new one")
 			else
+				TriggerClientEvent('fishing:setbait', _source, "none")
 				if xPlayer.getInventoryItem('fish').count > 100 then
 					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
 				else
@@ -104,86 +127,50 @@ AddEventHandler('fishing:catch', function(bait)
 					TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
 					xPlayer.addInventoryItem('fish', weight)
 				end
-			end
-		end
-	else
-		if bait == "fish" then
-			if rnd >= 75 then
-				TriggerClientEvent('fishing:setbait', _source, "none")
-				if xPlayer.getInventoryItem('fish').count > 100 then
-					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
-				else
-					weight = math.random(4,11)
-					TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
-					xPlayer.addInventoryItem('fish', weight)
-				end
-				
-			else
-				if xPlayer.getInventoryItem('fish').count > 100 then
-					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
-				else
-					weight = math.random(1,6)
-					TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
-					xPlayer.addInventoryItem('fish', weight)
-				end
+				TriggerClientEvent('fishing:message', _source, "~r~Bait is gone , Add a new one")
 			end
 		end
 		if bait == "none" then
-			
-			if rnd >= 70 then
-			TriggerClientEvent('fishing:message', _source, "~y~You are currently fishing without any equipped bait")
-				if  xPlayer.getInventoryItem('fish').count > 100 then
-						TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
-					else
-						weight = math.random(2,4)
-						TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
-						xPlayer.addInventoryItem('fish', weight)
-					end
-					
-				else
-				TriggerClientEvent('fishing:message', _source, "~y~You are currently fishing without any equipped bait")
-					if xPlayer.getInventoryItem('fish').count > 100 then
-						TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
-					else
-						weight = math.random(1,2)
-						TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
-						xPlayer.addInventoryItem('fish', weight)
-					end
-				end
+			TriggerClientEvent('fishing:message', _source, "~r~Equip some bait to the fishing rod inorder to attract fishes")
 		end
+
 		if bait == "shark" then
 			if rnd >= 82 then
-			
-						if rnd >= 91 then
-							TriggerClientEvent('fishing:setbait', _source, "none")
-							TriggerClientEvent('fishing:message', _source, "~r~It was huge and it broke your fishing rod!")
-							TriggerClientEvent('fishing:break', _source)
-							xPlayer.removeInventoryItem('fishingrod', 1)
-						else
-							if xPlayer.getInventoryItem('shark').count > 0  then
-									TriggerClientEvent('fishing:setbait', _source, "none")
-									TriggerClientEvent('fishing:message', _source, "~r~You cant hold more sharks")
-							else
-									TriggerClientEvent('fishing:message', _source, "~g~You caught a shark!\n~r~These are endangered species and are illegal to posses")
-									TriggerClientEvent('fishing:spawnPed', _source)
-									xPlayer.addInventoryItem('shark', 1)
-							end
-						end	
-							else
-									if xPlayer.getInventoryItem('fish').count > 100 then
-										TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
-									else
-										weight = math.random(4,8)
-										TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
-										xPlayer.addInventoryItem('fish', weight)
-									end
-								
-							end
+				if rnd >= 91 then
+					TriggerClientEvent('fishing:setbait', _source, "none")
+					TriggerClientEvent('fishing:message', _source, "~r~It was huge and it broke your fishing rod!")
+					TriggerClientEvent('fishing:break', _source)
+					xPlayer.removeInventoryItem('fishingrod', 1)
+				else
+					if xPlayer.getInventoryItem('shark').count > 0  then
+						TriggerClientEvent('fishing:setbait', _source, "none")
+						TriggerClientEvent('fishing:message', _source, "~r~You cant hold more sharks")
+					else
+						TriggerClientEvent('fishing:message', _source, "~g~You caught a shark!\n~r~These are endangered species and are illegal to posses")
+						TriggerClientEvent('fishing:spawnPed', _source)
+						xPlayer.addInventoryItem('shark', 1)
+					end
+					TriggerClientEvent('fishing:message', _source, "~r~Bait is gone , Add a new one")
+				end	
+			else
+				local BaitGoneProb = math.random(1,3)
+				SBaitGoneProb = SBaitGoneProb + BaitGoneProb
+				if SBaitGoneProb > 7 then 
+					SBaitGoneProb = 0
+					TriggerClientEvent('fishing:setbait', _source, "none")
+					TriggerClientEvent('fishing:message', _source, "~r~Bait is gone , Add a new one")
+				end
+				if xPlayer.getInventoryItem('fish').count > 100 then
+					TriggerClientEvent('fishing:message', _source, "~r~You cant hold more fish")
+				else
+					weight = math.random(2,6)
+					TriggerClientEvent('fishing:message', _source, "~g~You caught a fish: ~y~~h~" .. weight .. "kg")
+					xPlayer.addInventoryItem('fish', weight)
+				end			
 			end
-			
 		end
-	
-	
+			
+	end	
 end)
 
 RegisterServerEvent("fishing:lowmoney")
@@ -192,6 +179,16 @@ AddEventHandler("fishing:lowmoney", function(money)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	xPlayer.removeMoney(money)
 end)
+
+-- function to return rental money  
+RegisterServerEvent("fishing:highmoney") 
+AddEventHandler("fishing:highmoney", function(returnmoney)
+	print(returnmoney)
+    local _source = source	
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	xPlayer.addMoney(returnmoney)
+end)
+
 
 RegisterServerEvent('fishing:startSelling')
 AddEventHandler('fishing:startSelling', function(item)
@@ -210,12 +207,7 @@ AddEventHandler('fishing:startSelling', function(item)
 						xPlayer.addMoney(payment)
 						
 						
-			end
-				
-
-				
-
-				
+			end		
 			end
 			if item == "turtle" then
 				local FishQuantity = xPlayer.getInventoryItem('turtle').count
@@ -244,8 +236,6 @@ AddEventHandler('fishing:startSelling', function(item)
 					
 					
 				end
-			end
-			
-	
+			end	
 end)
 
