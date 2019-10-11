@@ -8,6 +8,6 @@ Lot of thanks to him ❤
 
 ## Changes Made
 - [x] Animation Issue 
-- [ ] Boat Return
-- [ ] Redifine Logic of Bait
+- [x] Boat Return
+- [x] Redifine Logic of Bait
 - [ ] Add items to Database
