@@ -3,7 +3,7 @@ Config = {}
 	--=====How long should it take for player to catch a fish=======--
 	---------------------------------------------------------------
 	--Time in miliseconds
-	Config.FishTime = {a = 20000, b = 44000}
+	Config.FishTime = {a = 15000, b = 25000}
 	
 	--------------------------------------------------------
 	--=====Prices of the items players can sell==========--
@@ -34,3 +34,27 @@ Config.MarkerZones = {
 	
 
 }
+
+Config.BoatReturn = {
+	{x = -3450.7 , y = 941.66 , z = 0.7 },
+	{x = -733.8776 , y = -1377.456 , z = -0.4},
+	{x = -1607.196, y = 5270.609, z = 0.1 },
+	{x = 3877.73 , y = 4464.463 , z = -0.474},
+	{x = 1352.582, y = 4226.215 , z = 29.6},
+}
+
+Config.Teleport = {
+	{x = -3422.7   ,y = 955.66 ,z = 7.35},
+	{x = -735.1914 , y = -1311.818 , z =5.0003},
+	{x = -1609.49, y = 5256.48, z = 3.974},
+	{x = 3858.967, y = 4463.418 , z = 2.72},
+	{x = 1334.902, y = 4225.874 , z = 33.915},
+}
+
+Config.PriceBoat  = 2500 
+Config.PriceBoat2 = 5500
+Config.PriceBoat3 = 6000
+Config.PriceBoat4 = 7500
+Config.PriceBoat5 = 4500
+Config.PriceBoat6 = 3500
+Config.PriceBoatP = 0
