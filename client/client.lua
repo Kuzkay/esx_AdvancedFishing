@@ -1,4 +1,5 @@
 ESX = nil
+
 Citizen.CreateThread(function()
 	while true do
 		Wait(5)
@@ -28,7 +29,7 @@ local lastInput = 0
 local pause = false
 local pausetimer = 0
 local correct = 0
-
+local AlreadyRentedBoat = false 
 local bait = "none"
 
 local blip = AddBlipForCoord(Config.SellFish.x, Config.SellFish.y, Config.SellFish.z)
@@ -85,7 +86,44 @@ Citizen.CreateThread(function()
 		end
     end
 end)
-			
+	
+-- Function to return boat and give money back
+
+function returnboat(coords,returnamount)
+	Citizen.CreateThread(function()
+		
+		local blip4 = AddBlipForCoord(Config.BoatReturn[coords].x,Config.BoatReturn[coords].y,Config.BoatReturn[coords].z)
+				SetBlipSprite (blip4, 427)
+				SetBlipDisplay(blip4, 4)
+				SetBlipScale  (blip4, 0.9)
+				SetBlipColour (blip4, 0)
+				SetBlipAsShortRange(blip4, true)
+				BeginTextCommandSetBlipName("STRING")
+				AddTextComponentString("Return Boat")
+				EndTextCommandSetBlipName(blip4)
+
+		while AlreadyRentedBoat do
+			Citizen.Wait(0)
+			local ped = PlayerPedId()
+			local pedcoords = GetEntityCoords(ped, false)
+			local distance = Vdist(pedcoords.x, pedcoords.y, pedcoords.z, Config.BoatReturn[coords].x,Config.BoatReturn[coords].y,Config.BoatReturn[coords].z)			
+			DrawMarker(1,Config.BoatReturn[coords].x,Config.BoatReturn[coords].y,Config.BoatReturn[coords].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 13.0, 13.0, 2.0, 255, 0, 0, 100, 0, 0, 0, 0)
+			if distance <= 8 then
+				DisplayHelpText('Press E to return a boat')		
+				if IsControlJustPressed(0, Keys['E']) and IsPedInAnyBoat(ped) then 
+					TriggerServerEvent("fishing:highmoney", returnamount) 				
+					vehicle = GetVehiclePedIsIn(ped, false)					
+					ESX.Game.DeleteVehicle(vehicle)		
+					ESX.Game.Teleport(ped, Config.Teleport[coords])
+					AlreadyRentedBoat = false
+					RemoveBlip(blip4)
+					break		
+				end
+			end
+		end
+	end)
+end
+
 function DisplayHelpText(str)
 	SetTextComponentFormat("STRING")
 	AddTextComponentString(str)
@@ -273,12 +311,15 @@ Citizen.CreateThread(function()
             local pedcoords = GetEntityCoords(ped, false)
             local distance = Vdist(pedcoords.x, pedcoords.y, pedcoords.z, Config.MarkerZones[k].x, Config.MarkerZones[k].y, Config.MarkerZones[k].z)
             if distance <= 1.40 then
-
-					DisplayHelpText('Press E to rent a boat')
-					
-					if IsControlJustPressed(0, Keys['E']) and IsPedOnFoot(ped) then
-						OpenBoatsMenu(Config.MarkerZones[k].xs, Config.MarkerZones[k].ys, Config.MarkerZones[k].zs)
+				DisplayHelpText('Press E to rent a boat')
+				if IsControlJustPressed(0, Keys['E']) and IsPedOnFoot(ped) then
+					if AlreadyRentedBoat==true then
+						ESX.ShowNotification("~r~You have already rented a boat")
+					else 
+						OpenBoatsMenu(Config.MarkerZones[k].xs, Config.MarkerZones[k].ys, Config.MarkerZones[k].zs,k) -- passing k to find boat index
 					end 
+				end 
+				
 			elseif distance < 1.45 then
 				ESX.UI.Menu.CloseAll()
             end
@@ -286,7 +327,7 @@ Citizen.CreateThread(function()
     end
 end)
 
-function OpenBoatsMenu(x, y , z)
+function OpenBoatsMenu(x, y , z, k)
 	local ped = PlayerPedId()
 	PlayerData = ESX.GetPlayerData()
 	local elements = {}
@@ -320,55 +361,63 @@ function OpenBoatsMenu(x, y , z)
 	if data.current.value == 'boat' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 2500) 
+		TriggerServerEvent("fishing:lowmoney", Config.PriceBoat) 
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 2500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "dinghy4")
+		AlreadyRentedBoat = true
+		returnboat(k,Config.PriceBoat)
 	end
 	
 	if data.current.value == 'boat2' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 5500) 
+		TriggerServerEvent("fishing:lowmoney", Config.PriceBoat2) 
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 5500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "TORO")
+		returnboat(k,Config.PriceBoat2)
 	end
 	
 	if data.current.value == 'boat3' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 6000) 
+		TriggerServerEvent("fishing:lowmoney", Config.PriceBoat3) 
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 6000)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "MARQUIS")
+		returnboat(k,Config.PriceBoat3)
 	end
 
 	if data.current.value == 'boat4' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 7500) 
+		TriggerServerEvent("fishing:lowmoney", Config.PriceBoat4) 
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 7500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "tug")
+		returnboat(k,Config.PriceBoat4)
+		AlreadyRentedBoat = true
 	end
 	
 	if data.current.value == 'boat5' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 4500) 
+		TriggerServerEvent("fishing:lowmoney", Config.PriceBoat5) 
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 4500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "jetmax")
+		returnboat(k,Config.PriceBoat5)
 	end
 	
 	if data.current.value == 'boat6' then
 		ESX.UI.Menu.CloseAll()
 
-		TriggerServerEvent("fishing:lowmoney", 3500) 
+		TriggerServerEvent("fishing:lowmoney", Config.PriceBoat6) 
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 3500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "suntrap")
+		returnboat(k,Config.PriceBoat6)
 	end
 	
 	
@@ -378,6 +427,8 @@ function OpenBoatsMenu(x, y , z)
 		TriggerEvent("chatMessage", 'You took out a boat')
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "predator")
+		returnboat(k,Config.PriceBoatP)
+		AlreadyRentedBoat = true
 	end
 	ESX.UI.Menu.CloseAll()
 	
