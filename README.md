@@ -32,7 +32,7 @@ start esx_AdvancedFishing
 * Travel to the sea ( you cannot fish near the shore)
 * Take the rod by clicking / draging to the **use** in inventory ( similarly attach baits also )
 * Happy Fishing
-## Probabily of fishing
+## Probability of fishing
 ### Fishing baits 
   Can be used only once and a random Kg of fish can be catched
 ### Turtle baits
