@@ -10,3 +10,4 @@ Lot of thanks to him ❤
 - [x] Animation Issue 
 - [ ] Boat Return
 - [ ] Redifine Logic of Bait
+- [ ] Add items to Database
