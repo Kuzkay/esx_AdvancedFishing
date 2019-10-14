@@ -377,6 +377,7 @@ function OpenBoatsMenu(x, y , z, k)
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 5500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "TORO")
+		AlreadyRentedBoat = true
 		returnboat(k,Config.PriceBoat2)
 	end
 	
@@ -387,6 +388,7 @@ function OpenBoatsMenu(x, y , z, k)
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 6000)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "MARQUIS")
+		AlreadyRentedBoat = true
 		returnboat(k,Config.PriceBoat3)
 	end
 
@@ -408,6 +410,7 @@ function OpenBoatsMenu(x, y , z, k)
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 4500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "jetmax")
+		AlreadyRentedBoat = true
 		returnboat(k,Config.PriceBoat5)
 	end
 	
@@ -418,6 +421,7 @@ function OpenBoatsMenu(x, y , z, k)
 		TriggerEvent("chatMessage", 'You rented a boat for', {255,0,255}, '$' .. 3500)
 		SetPedCoordsKeepVehicle(ped, x, y , z)
 		TriggerEvent('esx:spawnVehicle', "suntrap")
+		AlreadyRentedBoat = true
 		returnboat(k,Config.PriceBoat6)
 	end
 	
