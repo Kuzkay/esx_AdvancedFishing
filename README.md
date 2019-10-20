@@ -1,6 +1,6 @@
 # esx_AdvancedFishing
 Advanced Fishing Job Script for FiveM GTA V Mod and ESX Framework <br>
-My Discrod : VRN Gaming#6572
+My Discord : VRN Gaming#6572
 
 ## Description
 This is a modified version of Advanced Fishing developed by Kuzaky | Discord: Kuzkay#9999 <br>
