@@ -5,7 +5,8 @@ My Discord : VRN Gaming#6572
 ## Description
 This is a modified version of Advanced Fishing developed by Kuzaky | Discord: Kuzkay#9999 <br>
 His work can be found here https://github.com/Kuzkay/esx_AdvancedFishing <br>
-Lot of thanks to him ❤
+Lot of thanks to him for permitting modifications ❤
+
 
 ## Changes Made
 - [x] Animation Issue 
