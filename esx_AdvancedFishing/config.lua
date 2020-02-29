@@ -4,33 +4,73 @@ Config = {}
 	---------------------------------------------------------------
 	--Time in miliseconds
 	Config.FishTime = {a = 20000, b = 44000}
-	
-	--------------------------------------------------------
-	--=====Prices of the items players can sell==========--
-	--------------------------------------------------------
-	--First amount minimum price second maximum amount (the amount player will get is random between those two numbers)
-	Config.FishPrice = {a = 2000, b = 3000} --Will get clean money THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
-	Config.TurtlePrice = {a = 12000, b = 18000} --Will get dirty money
-	Config.SharkPrice = {a = 40000, b = 60000} --Will get dirty money
 
 	--------------------------------------------------------
 	--=====Locations where players can sell stuff========--
 	--------------------------------------------------------
 
-	Config.SellFish = {x = -3251.2, y = 991.5, z = 11.49} --Place where players can sell their fish
-	Config.SellTurtle = {x = 3804.0, y = 4443.3, z = 3.0} --Place where players can sell their turtles 
-	Config.SellShark = {x = 2517.6 , y = 4218.0, z = 38.8} --Place where players can sell their sharks
+	Config.Sell = {
+		{
+			pos = vec3(-3251.2, 991.5, 11.49), 
+			type = "fish",
+			sellText = "Fish Dealer",
+			blip = 356,
+			colour = 17
+		},
+		{
+			pos = vec3(3804.0, 4443.3, 3.0), 
+			type = "turtle",
+			sellText = "Sea Turtle Dealer",
+			blip = 68,
+			colour = 49
+		},
+		{
+			pos = vec3(2517.6 , 4218.0, 38.8), 
+			type = "shark",
+			sellText = "Shark Dealer",
+			blip = 68,
+			colour = 49
+		}
+	}
 
 	--------------------------------------------------------
 	--=====Locations where players can rent boats========--
 	--------------------------------------------------------
 Config.MarkerZones = { 
-	
-    {x = -3426.7   ,y = 955.66 ,z = 7.35, xs = -3426.2  , ys = 942.4, zs = 1.1 },
-	{x = -732.9     ,y = -1309.7 ,z = 4.0, xs = -725.7    , ys = -1351.5, zs = 0.5 },  
-	{x = -1607.6      ,y =  5252.8 ,z = 3.0, xs = -1590.2      , ys = 5278.8, zs = 1.0 },
-	{x = 3855.0        ,y =  4463.7 ,z = 1.6, xs = 3885.2       , ys =  4507.2, zs = 1.0 },
-	{x = 1330.8        ,y =  4226.6 ,z = 32.9, xs = 1334.2         , ys =  4192.4, zs = 30.0 },
-	
+	{
+		Marker = vec3(-3426.7,	955.66, 7.35), -- Rental Marker
+		Spawn = vec3(-3426.2, 942.4, 1.1), -- Boat Spawn Point
+		SpawnHeading = 90.0, -- Boat Heading
+		Return = vec3(-3420.2, 996.51, -0.2) -- Boat Return Point
+	},
+	{
+		Marker = vec3(-732.9, -1309.7, 4.0),
+		Spawn = vec3(-725.7, -1351.5, 0.5),
+		SpawnHeading = 135.0,
+		Return = vec3(-712.78, -1338.49, 0.0)
+	},  
+	{
+		Marker = vec3(-281.25,	6632.1, 6.4),
+		Spawn = vec3(-330.22, 6660.0, 1.0),
+		SpawnHeading = 45.0,
+		Return = vec3(-268.4, 6697.04, -0.2)
+	},
+	{
+		Marker = vec3(3855.0, 4463.7, 1.6),
+		Spawn = vec3(3885.2, 4507.2, 1.0),
+		SpawnHeading = 300.0,
+		Return = vec3(3862.1, 4440.4, -0.2)
+	},
+	{
+		Marker = vec3(1330.8, 4226.6, 32.9),
+		Spawn = vec3(1343.44, 4190.42, 30.0),
+		SpawnSpawnHeading = 200.0,
+		Return = vec3(1295.0, 4198.43, 30.0)
+	},
+}
 
+Config.RentalBoats = {
+	-- Fee and Deposit is 50% of the price, you get the deposit returned
+	-- Add more boats if you want
+	{model = "tug", price = 8750},
 }
