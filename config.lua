@@ -1,0 +1,60 @@
+Config = {}
+	---------------------------------------------------------------
+	--=====How long should it take for player to catch a fish=======--
+	---------------------------------------------------------------
+	--Time in miliseconds
+	Config.FishTime = {a = 15000, b = 25000}
+	
+	--------------------------------------------------------
+	--=====Prices of the items players can sell==========--
+	--------------------------------------------------------
+	--First amount minimum price second maximum amount (the amount player will get is random between those two numbers)
+	Config.FishPrice = {a = 375, b = 400} --Will get clean money THIS PRICE IS FOR EVERY 5 FISH ITEMS (5 kg)
+	Config.TurtlePrice = {a = 750, b = 1000} --Will get dirty money
+	Config.SharkPrice = {a = 1500, b = 2000} --Will get dirty money
+
+	--------------------------------------------------------
+	--=====Locations where players can sell stuff========--
+	--------------------------------------------------------
+
+	Config.SellFish = {x = -3251.2, y = 991.5, z = 11.49} --Place where players can sell their fish
+	Config.SellTurtle = {x = 3804.0, y = 4443.3, z = 3.0} --Place where players can sell their turtles 
+	Config.SellShark = {x = 2517.6 , y = 4218.0, z = 38.8} --Place where players can sell their sharks
+
+	--------------------------------------------------------
+	--=====Locations where players can rent boats========--
+	--------------------------------------------------------
+Config.MarkerZones = { 
+	
+    {x = -3426.7   ,y = 955.66 ,z = 7.35, xs = -3426.2  , ys = 942.4, zs = 1.1 },
+	{x = -732.9     ,y = -1309.7 ,z = 4.0, xs = -725.7    , ys = -1351.5, zs = 0.5 },  
+	{x = -1607.6      ,y =  5252.8 ,z = 3.0, xs = -1590.2      , ys = 5278.8, zs = 1.0 },
+	{x = 3855.0        ,y =  4463.7 ,z = 1.6, xs = 3885.2       , ys =  4507.2, zs = 1.0 },
+	{x = 1330.8        ,y =  4226.6 ,z = 32.9, xs = 1334.2         , ys =  4192.4, zs = 30.0 },
+	
+
+}
+
+Config.BoatReturn = {
+	{x = -3450.7 , y = 941.66 , z = 0.7 },
+	{x = -733.8776 , y = -1377.456 , z = -0.4},
+	{x = -1607.196, y = 5270.609, z = 0.1 },
+	{x = 3877.73 , y = 4464.463 , z = -0.474},
+	{x = 1352.582, y = 4226.215 , z = 29.6},
+}
+
+Config.Teleport = {
+	{x = -3422.7   ,y = 955.66 ,z = 7.35},
+	{x = -735.1914 , y = -1311.818 , z =5.0003},
+	{x = -1609.49, y = 5256.48, z = 3.974},
+	{x = 3858.967, y = 4463.418 , z = 2.72},
+	{x = 1334.902, y = 4225.874 , z = 33.915},
+}
+
+Config.PriceBoat  = 2500 
+Config.PriceBoat2 = 5500
+Config.PriceBoat3 = 6000
+Config.PriceBoat4 = 7500
+Config.PriceBoat5 = 4500
+Config.PriceBoat6 = 3500
+Config.PriceBoatP = 0
